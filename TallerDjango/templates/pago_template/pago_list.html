@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+
+{%block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Tipo de Pago</td>
+			<td>Proveedor</td>
+	
+
+		</tr>
+
+	</thead>
+	<tbody>
+
+		{% if object_list %}
+		{% for pago in object_list %}
+		
+		<tr>
+			<td>{{pago.id}}</td>
+			<td>{{pago.tipoPago}}</td>
+			<td>{{pago.proveedor.nombre}}{{pago.proveedor.apellidos}}</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'Pagos:pago_editar'  pago.id %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'Pagos:pago_eliminar' pago.id %}">Eliminar</a>
+			</td>
+
+		</tr>
+		{% endfor %}
+
+		{% else %}
+		<h1>No hay reporte de proveedores</h1>
+
+		{% endif %}
+	</tbody>
+
+	
+
+</table>
+
+{% endblock%}

@@ -1,0 +1,48 @@
+{% extends 'base/base.html' %}
+
+{%block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Cantidad de entregas anuales</td>
+			<td>Año</td>
+			<td>Registrante</td>
+			<td>Proveedor</td>
+			<td>Acciones</td>
+
+		</tr>
+
+	</thead>
+	<tbody>
+
+		{% if object_list %}
+		{% for reporte in object_list %}
+		
+		<tr>
+			<td>{{reporte.id}}</td>
+			<td>{{reporte.cantidadEntregasAnuales}}</td>
+			<td>{{reporte.año}}</td>
+			<td>{{reporte.registrante}}</td>
+			<td>{{reporte.proveedor.nombre}}{{reporte.proveedor.apellidos}}</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'Reportes:reporte_editar' reporte.id %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'Reportes:reporte_eliminar' reporte.id %}">Eliminar</a>
+
+			</td>
+
+		</tr>
+		{% endfor %}
+
+		{% else %}
+		<h1>No hay reporte de proveedores</h1>
+
+		{% endif %}
+	</tbody>
+
+	
+
+</table>
+
+{% endblock%}
